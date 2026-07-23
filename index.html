@@ -360,12 +360,54 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
 .rv-d1{transition-delay:.06s}.rv-d2{transition-delay:.12s}.rv-d3{transition-delay:.18s}.rv-d4{transition-delay:.24s}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.float{animation:none}.hero-badge .dot{animation:none}}
 
+/* ---------- MOBILE ---------- */
+@media(max-width:600px){
+  .wrap{padding:0 18px}
+  .nav{padding:12px 16px}
+  .nav.scrolled{padding:10px 16px}
+  .btn{white-space:normal}
+  .nav-cta .btn{padding:11px 18px;font-size:14px}
+  .hero{padding:96px 0 40px}
+  .hero h1{font-size:clamp(28px,8.6vw,42px);letter-spacing:-.04em;max-width:100%}
+  .hero-sub{font-size:15px;max-width:100%;margin-top:20px}
+  .hero-badge{white-space:normal;text-align:center;line-height:1.35;max-width:100%;font-size:11.5px}
+  .hero-actions{flex-direction:column;width:100%;gap:11px;margin-top:30px}
+  .hero-actions .btn{width:100%}
+  .hero-note{font-size:11.5px;max-width:100%;line-height:1.7}
+  .hero-stage{width:100%;margin-top:38px}
+  .h-sec{font-size:clamp(26px,7.6vw,44px)}
+  .sec-head{margin-bottom:40px}
+  .kpis{gap:8px}
+  .kpi{padding:10px}
+  .kpi .val{font-size:15px}
+  .trans-col{padding:22px}
+  .plan{padding:26px 22px}
+  .eco,.prob-card{padding:20px}
+  .foot-top{gap:28px}
+  .foot-cols{gap:36px}
+  .cta img.mk{height:88px}
+}
+
 /* whatsapp float */
 .wpp{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;
   background:linear-gradient(180deg,#25d366,#128c3e);display:flex;align-items:center;justify-content:center;
   box-shadow:0 12px 30px -6px rgba(37,211,102,.6);transition:.35s var(--ease)}
 .wpp:hover{transform:scale(1.08) translateY(-2px)}
 .wpp svg{width:28px;height:28px;color:#fff}
+
+/* voltar ao topo */
+.totop{position:fixed;right:22px;bottom:88px;z-index:89;width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);color:var(--green-deep);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;visibility:hidden;transform:translateY(10px) scale(.9);transition:.35s var(--ease)}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{border-color:rgba(0,200,83,.45);color:var(--green);transform:translateY(-2px)}
+.totop svg{width:20px;height:20px}
+@media(max-width:560px){
+  .wpp{right:16px;bottom:16px;width:52px;height:52px}
+  .wpp svg{width:26px;height:26px}
+  .totop{right:16px;bottom:78px;width:44px;height:44px}
+}
 </style>
 </head>
 <body>
@@ -718,13 +760,22 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
   </div>
 </footer>
 
+<button class="totop" id="toTop" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <a class="wpp" href="https://wa.me/595000000000?text=Quero%20saber%20mais%20sobre%20o%20GiroLoja" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.26-.1-.45-.15-.64.15-.19.28-.73.94-.9 1.13-.16.19-.33.21-.61.07-1.66-.83-2.75-1.48-3.85-3.35-.29-.5.29-.46.83-1.54.09-.19.05-.35-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.28-1 .98-1 2.4s1.02 2.78 1.17 2.97c.14.19 2.02 3.08 4.9 4.32 2.87 1.24 2.87.83 3.39.78.52-.05 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33z"/><path d="M12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3 .79.8-2.92-.2-.31A8.2 8.2 0 1 1 12 20.2z"/></svg>
 </a>
 
 <script>
 const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>30);
+  toTop.classList.toggle('show',scrollY>600);
+},{passive:true});
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
