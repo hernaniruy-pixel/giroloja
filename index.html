@@ -227,23 +227,29 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.02;font-weight:700}
 .loss-cta h3 .g{color:var(--green)}
 .loss-cta .btn{margin-top:22px}
 
-/* ---------- FLOW (sem/com) ---------- */
-.flow{display:flex;flex-direction:column;gap:18px;max-width:920px;margin:0 auto}
-.flow-row{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--panel-solid);box-shadow:var(--shadow-sm)}
-.flow-row.sem{background:linear-gradient(180deg,rgba(230,80,80,.05),#fff)}
-.flow-row.com{background:linear-gradient(180deg,rgba(0,200,83,.07),#fff);border-color:rgba(0,200,83,.28)}
-.flow-label{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 12px;border-radius:100px;margin-bottom:18px}
-.sem .flow-label{background:rgba(230,80,80,.12);color:#d24d4d}
-.com .flow-label{background:rgba(0,200,83,.16);color:var(--green-deep)}
-.flow-steps{display:flex;align-items:center;flex-wrap:wrap;gap:9px}
-.flow-steps .step{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:100px;font-size:13.5px;font-weight:600;
-  background:#fff;border:1px solid var(--line);color:var(--txt)}
-.flow-steps .step svg{width:15px;height:15px}
-.flow-steps .arrow{color:var(--dim-2);display:inline-flex}
-.flow-steps .arrow svg{width:15px;height:15px}
-.sem .step.end{background:rgba(230,80,80,.12);border-color:rgba(230,80,80,.32);color:#c0392b}
-.com .step.end{background:linear-gradient(180deg,var(--green-br2),var(--green-br));border-color:transparent;color:#04140a}
+/* ---------- JORNADA DE COMPRA ---------- */
+.journey{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
+.jcol{border-radius:var(--radius);padding:26px 22px;border:1px solid var(--line);background:var(--panel-solid);box-shadow:var(--shadow-sm)}
+.jcol.before{background:linear-gradient(180deg,rgba(230,80,80,.05),#fff)}
+.jcol.after{background:linear-gradient(180deg,rgba(0,200,83,.08),#fff);border-color:rgba(0,200,83,.3);box-shadow:0 22px 54px -26px rgba(0,160,70,.35)}
+.jtag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 13px;border-radius:100px;margin-bottom:22px}
+.before .jtag{background:rgba(230,80,80,.12);color:#d24d4d}
+.after .jtag{background:rgba(0,200,83,.16);color:var(--green-deep)}
+.jsteps{display:flex;flex-direction:column}
+.jstep{padding:13px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);
+  font-size:14px;font-weight:600;color:var(--txt);text-align:center;transition:.35s var(--ease)}
+.jcol:hover .jstep{border-color:var(--line-2)}
+.jarrow{display:flex;justify-content:center;color:var(--dim-2);padding:7px 0}
+.jarrow svg{width:16px;height:16px}
+.before .jstep.end{background:rgba(230,80,80,.12);border-color:rgba(230,80,80,.34);color:#c0392b;font-weight:700}
+.after .jstep.end{background:linear-gradient(180deg,var(--green-br2),var(--green-br));border-color:transparent;color:#04140a;
+  font-weight:700;box-shadow:0 12px 26px -8px rgba(0,200,83,.5)}
+@media(max-width:820px){.journey{grid-template-columns:1fr}}
+
+/* CTA pergunta */
+.cta-q{margin-top:20px;font-size:clamp(18px,3vw,28px);font-weight:700;letter-spacing:-.03em;color:var(--txt);max-width:24ch;line-height:1.15}
+.cta-q .g{background:linear-gradient(180deg,#00c853,#07803b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ---------- SEGMENTOS (prova social) ---------- */
 .seg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
@@ -254,7 +260,7 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.02;font-weight:700}
   background:rgba(0,200,83,.1);color:var(--green-deep)}
 .seg .si svg{width:19px;height:19px}
 .seg b{font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--txt)}
-@media(max-width:600px){.flow-steps{gap:7px}.flow-steps .step{padding:8px 12px;font-size:12.5px}.loss-row{font-size:14px;padding:16px 18px}}
+@media(max-width:600px){.jstep{padding:11px 14px;font-size:13px}.jcol{padding:22px 18px}.loss-row{font-size:14px;padding:16px 18px}}
 
 /* ---------- DEMO / VIDEOS ---------- */
 .demo-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
@@ -595,14 +601,14 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
       <p class="lead" style="margin:18px auto 0">Todo dia, um negócio desorganizado deixa dinheiro na mesa — sem nem perceber.</p>
     </div>
     <div class="loss-grid">
-      <div class="loss-row rv"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Seus produtos se perdem no meio das conversas do WhatsApp.</div>
-      <div class="loss-row rv rv-d1"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Seus clientes não encontram o que procuram — e vão embora.</div>
-      <div class="loss-row rv rv-d2"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Seu negócio parece pequeno, mesmo vendendo muito.</div>
-      <div class="loss-row rv rv-d1"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Sua marca transmite pouca confiança na hora de fechar.</div>
-      <div class="loss-row rv rv-d2"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Seus concorrentes parecem maiores do que realmente são.</div>
+      <div class="loss-row rv"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Quantos clientes você perde porque eles não encontram seus produtos rapidamente?</div>
+      <div class="loss-row rv rv-d1"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Quantas vezes por dia você responde as mesmas perguntas no WhatsApp?</div>
+      <div class="loss-row rv rv-d2"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Quantos clientes desistem porque o seu negócio parece pequeno?</div>
+      <div class="loss-row rv rv-d1"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Quantas vendas você perde simplesmente por não transmitir confiança?</div>
+      <div class="loss-row rv rv-d2"><span class="lx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Quantos concorrentes parecem maiores do que você — mesmo vendendo menos?</div>
     </div>
     <div class="loss-cta rv rv-d1">
-      <h3>A GiroLoja resolve tudo isso <span class="g">em poucos minutos.</span></h3>
+      <h3>Seu negócio já vende. <span class="g">Nós apenas vamos fazer ele vender melhor.</span></h3>
       <a href="#cta" class="btn btn-primary">Quero profissionalizar meu negócio</a>
     </div>
   </div>
@@ -612,39 +618,41 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
 <section class="sec-pad" id="transformacao">
   <div class="wrap">
     <div class="sec-head center rv">
-      <div class="eyebrow">A transformação</div>
-      <h2 class="h-sec">O caminho até a venda, <span class="g">sem atrito.</span></h2>
-      <p class="lead" style="margin:18px auto 0">A diferença entre um cliente que desiste e um cliente pronto para comprar.</p>
+      <div class="eyebrow">A jornada de compra</div>
+      <h2 class="h-sec">Como o seu cliente <span class="g">compra hoje?</span></h2>
+      <p class="lead" style="margin:18px auto 0">Cada passo a mais é uma chance a mais de ele desistir — ou comprar do concorrente.</p>
     </div>
-    <div class="flow">
-      <div class="flow-row sem rv">
-        <span class="flow-label">Sem GiroLoja</span>
-        <div class="flow-steps">
-          <span class="step">Instagram</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">WhatsApp</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">Perguntas</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">Fotos</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">Preços</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step end"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M18 6L6 18M6 6l12 12"/></svg> Cliente desiste</span>
+    <div class="journey">
+      <div class="jcol before rv">
+        <span class="jtag">Hoje, sem estrutura</span>
+        <div class="jsteps">
+          <div class="jstep">Vê no Instagram</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Pergunta o preço</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Pergunta a disponibilidade</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Pede mais fotos</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Demora para decidir</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep end">Vai para o concorrente</div>
         </div>
       </div>
-      <div class="flow-row com rv rv-d1">
-        <span class="flow-label">Com GiroLoja</span>
-        <div class="flow-steps">
-          <span class="step">Vitrine</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">Produtos</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">Categorias</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step">WhatsApp</span>
-          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <span class="step end"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg> Cliente pronto para comprar</span>
+      <div class="jcol after rv rv-d1">
+        <span class="jtag">Com GiroLoja</span>
+        <div class="jsteps">
+          <div class="jstep">Entra na sua vitrine</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Encontra o produto</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Filtra por categorias</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Vê preço e informações</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep">Clica no WhatsApp</div>
+          <span class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="jstep end">Compra muito mais rápido</div>
         </div>
       </div>
     </div>
@@ -704,7 +712,7 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
   <div class="wrap">
     <div class="sec-head center rv">
       <div class="eyebrow">Para qualquer segmento</div>
-      <h2 class="h-sec">Criado para qualquer negócio <span class="g">que vende produtos.</span></h2>
+      <h2 class="h-sec">Criado para quem <span class="g">vende produtos.</span></h2>
       <p class="lead" style="margin:18px auto 0">Não importa o que você vende. Se você vende, o GiroLoja profissionaliza.</p>
     </div>
     <div class="seg-grid" id="segGrid"></div>
@@ -804,8 +812,9 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
   <div class="cta-grid"></div>
   <div class="wrap cta-inner">
     <img class="mk rv" src="assets/logo-simbolo.png" alt="GiroLoja">
-    <h2 class="rv rv-d1">O seu próximo cliente já está procurando o que você vende. <span class="g">Ele vai comprar de você — ou do seu concorrente?</span></h2>
-    <p class="csub rv rv-d2">Nós entregamos a estrutura digital. Você faz o que já sabe fazer: vender.</p>
+    <h2 class="rv rv-d1">Seu próximo cliente já está procurando o que você vende.</h2>
+    <p class="cta-q rv rv-d2">A única pergunta é: <span class="g">ele vai comprar de você ou do seu concorrente?</span></p>
+    <p class="csub rv rv-d3">Nós entregamos toda a estrutura digital do seu negócio. Você continua fazendo o que sempre soube fazer: vender.</p>
     <a href="https://wa.me/595000000000?text=Quero%20profissionalizar%20meu%20neg%C3%B3cio%20com%20a%20GiroLoja" target="_blank" rel="noopener" class="btn btn-primary btn-lg rv rv-d3">
       Quero profissionalizar meu negócio
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -907,16 +916,16 @@ document.getElementById('showGrid').innerHTML=VITRINES.map((v,i)=>`
   </div>`).join('');
 
 const ECO=[
-  ['Sua marca em primeiro lugar','A vitrine tem a sua cara — cores, logo e identidade. Não a de um sistema.','M3 9l1-5h16l1 5M4 9v11h16V9M9 13h6'],
-  ['Tudo no lugar certo','Seus produtos organizados. Adeus catálogo perdido no meio da conversa.','M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7M12 11v10'],
-  ['Compra direto no WhatsApp','Seu cliente escolhe o produto e já inicia a compra pelo WhatsApp.','M21 11.5a8.5 8.5 0 1 1-4.4-7.4L21 3l-1.1 4.4A8.5 8.5 0 0 1 21 11.5z'],
-  ['Endereço profissional','Sua marca ganha um endereço só seu na internet — e mais autoridade.','M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20M12 2v20'],
-  ['Seu negócio sob controle','Vendas, visitas e produtos num painel simples de acompanhar.','M3 3h8v8H3zM13 3h8v5h-8zM13 12h8v9h-8zM3 15h8v6H3z'],
-  ['Encontrado em segundos','Seus clientes acham exatamente o que procuram, sem precisar perguntar.','M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z'],
-  ['Cresça sem limites','Cadastre quantos produtos quiser. A estrutura acompanha o seu crescimento.','M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6M12 3v13M8 7l4-4 4 4'],
-  ['Simples de verdade','Você no controle da operação, mesmo sem entender de tecnologia.','M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7'],
-  ['Feito para o celular','A maioria compra pelo celular. Sua vitrine impecável em qualquer tela.','M5 2h14v20H5zM9 18h6'],
-  ['Do seu jeito','A estrutura se adapta ao seu negócio — e não o contrário.','M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6'],
+  ['Tenha o controle completo do seu negócio','Vendas, visitas e produtos num único painel — tudo sob o seu olhar.','M3 3h8v8H3zM13 3h8v5h-8zM13 12h8v9h-8zM3 15h8v6H3z'],
+  ['Organize milhares de produtos em minutos','Todo o seu catálogo no ar e em ordem, sem trabalho manual interminável.','M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7M12 11v10'],
+  ['Leve seu cliente do clique à compra','Sem atritos: ele escolhe o produto e já chega no WhatsApp pronto pra fechar.','M21 11.5a8.5 8.5 0 1 1-4.4-7.4L21 3l-1.1 4.4A8.5 8.5 0 0 1 21 11.5z'],
+  ['Sua marca ganha um endereço profissional','Um domínio só seu na internet — e a autoridade que vem junto com ele.','M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20M12 2v20'],
+  ['Seu cliente encontra o que procura em segundos','Categorias que levam direto ao produto certo, sem ele precisar perguntar.','M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z'],
+  ['Sua marca em primeiro lugar, não o sistema','A vitrine tem a sua cara: cores, logo e identidade do seu negócio.','M3 9l1-5h16l1 5M4 9v11h16V9M9 13h6'],
+  ['Cresça sem esbarrar em limites','Cadastre quantos produtos quiser. A estrutura acompanha o seu crescimento.','M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6M12 3v13M8 7l4-4 4 4'],
+  ['Assuma o controle sem depender de ninguém','Simples de usar de verdade, mesmo sem entender nada de tecnologia.','M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7'],
+  ['Venda bem onde seu cliente está: no celular','A maioria compra pelo celular. Sua vitrine impecável em qualquer tela.','M5 2h14v20H5zM9 18h6'],
+  ['Uma estrutura que se adapta ao seu negócio','E não o contrário. Do jeito que a sua operação precisa funcionar.','M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6'],
 ];
 document.getElementById('ecoGrid').innerHTML=ECO.map((e,i)=>`
   <div class="eco rv ${['','rv-d1','rv-d2','rv-d3'][i%4]}">
@@ -924,16 +933,20 @@ document.getElementById('ecoGrid').innerHTML=ECO.map((e,i)=>`
     <h3>${e[0]}</h3><p>${e[1]}</p>
   </div>`).join('');
 const SEG=[
-  ['Importados','M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7M12 11v10'],
+  ['Importadores','M20 7l-8-4-8 4 8 4 8-4zM4 7v10l8 4 8-4V7M12 11v10'],
+  ['Revendedores','M3 3h3l2 12h10l2-8H7'],
+  ['Distribuidoras','M1 16V8h13v8zM14 11h4l3 3v2h-7zM6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'],
   ['Farmácias','M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z'],
   ['Perfumarias','M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z'],
-  ['Pet Shops','M4.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM19.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM9 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM15 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21c3 0 5-1.8 5-4s-2-4-5-4-5 1.8-5 4 2 4 5 4z'],
   ['Tabacarias','M17 12H3M17 12a3 3 0 0 0 0-6M14 12v6M21 8v8'],
-  ['Moda & Acessórios','M4 5l4-2 4 3 4-3 4 2-2 5-2-1v9H8v-9l-2 1z'],
-  ['Eletrônicos','M7 2h10v20H7zM11 18h2'],
+  ['Pet Shops','M4.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM19.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM9 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM15 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21c3 0 5-1.8 5-4s-2-4-5-4-5 1.8-5 4 2 4 5 4z'],
+  ['Moda','M4 5l4-2 4 3 4-3 4 2-2 5-2-1v9H8v-9l-2 1z'],
   ['Suplementos','M6.5 8v8M4 6v12M17.5 8v8M20 6v12M6.5 12h11'],
+  ['Eletrônicos','M7 2h10v20H7zM11 18h2'],
   ['Alimentos','M4 3v8a2 2 0 0 0 2 2v8M6 3v6M8 3v8M18 3c-2 0-3 3-3 6s1 4 2 4v8'],
-  ['Revendedores','M3 3h3l2 12h10l2-8H7'],
+  ['Lojas físicas','M3 9l1-5h16l1 5M4 9v11h16V9M9 20v-7h6v7'],
+  ['Lojas online','M2 3h20v14H2zM8 21h8M12 17v4M6 8h6M6 11h9'],
+  ['Pequenos empreendedores','M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21c0-4 4-6 8-6s8 2 8 6'],
 ];
 document.getElementById('segGrid').innerHTML=SEG.map((s,i)=>`
   <div class="seg rv ${['','rv-d1','rv-d2','rv-d3'][i%4]}">
