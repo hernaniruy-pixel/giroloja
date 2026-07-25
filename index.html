@@ -96,8 +96,25 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.02;font-weight:700}
 .nav-links a{font-size:14px;color:var(--dim);font-weight:500;transition:.25s}
 .nav-links a:hover{color:var(--txt)}
 .nav-cta{display:flex;align-items:center;gap:14px}
+/* botão hambúrguer (só mobile) */
+.nav-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--panel-solid);
+  align-items:center;justify-content:center;cursor:pointer;color:var(--txt);flex-shrink:0;transition:.25s var(--ease)}
+.nav-burger:active{transform:scale(.94)}
+.nav-burger svg{width:22px;height:22px}
+.nav-burger .ic-close{display:none}
+.nav-burger.open .ic-open{display:none}
+.nav-burger.open .ic-close{display:block}
+/* painel do menu mobile */
+.mnav{position:fixed;inset:0;z-index:99;background:rgba(255,255,255,.98);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:80px 30px 40px;
+  opacity:0;visibility:hidden;transform:translateY(-12px);transition:.4s var(--ease)}
+.mnav.open{opacity:1;visibility:visible;transform:none}
+.mnav a{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--txt);padding:14px 4px;border-bottom:1px solid var(--line);transition:.2s}
+.mnav a:active{color:var(--green-deep)}
+.mnav .m-cta{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.mnav .m-cta a{border-bottom:none;font-size:15px;justify-content:center;width:100%}
 @media(max-width:1080px){.nav-links{gap:20px}.nav-links a{font-size:13px}}
-@media(max-width:980px){.nav-links{display:none}.nav-cta .btn-ghost{display:none}}
+@media(max-width:980px){.nav-links{display:none}.nav-cta .btn-ghost{display:none}.nav-burger{display:flex}}
 
 /* ---------- HERO ---------- */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
@@ -487,8 +504,25 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:56px 0 34
   <div class="nav-cta">
     <a href="#planos" class="btn btn-ghost">Ver planos</a>
     <a href="#cta" class="btn btn-primary">Começar agora</a>
+    <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mnav">
+      <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
   </div>
 </nav>
+
+<!-- MENU MOBILE -->
+<div class="mnav" id="mnav">
+  <a href="#transformacao">Transformação</a>
+  <a href="#demo">Demonstração</a>
+  <a href="#vitrines">Vitrines</a>
+  <a href="#ecossistema">Ecossistema</a>
+  <a href="#planos">Planos</a>
+  <div class="m-cta">
+    <a href="#planos" class="btn btn-ghost">Ver planos</a>
+    <a href="#cta" class="btn btn-primary">Começar agora</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -892,6 +926,20 @@ addEventListener('scroll',()=>{
   toTop.classList.toggle('show',scrollY>600);
 },{passive:true});
 toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+/* menu mobile */
+const burger=document.getElementById('burger');
+const mnav=document.getElementById('mnav');
+function setMenu(open){
+  burger.classList.toggle('open',open);
+  mnav.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',open);
+  burger.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>setMenu(!mnav.classList.contains('open')));
+mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
 
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
